@@ -63,6 +63,7 @@ services:
     image: docker.elastic.co/elasticsearch/elasticsearch:${STACK_VERSION}
     volumes:
       - ../certs:/usr/share/elasticsearch/config/certs
+      - ${ES1_DATA}:/usr/share/elasticsearch/data
     ports:
       - ${ES_PORT}:9200
     environment:
@@ -105,6 +106,7 @@ services:
     image: docker.elastic.co/elasticsearch/elasticsearch:${STACK_VERSION}
     volumes:
       - ../certs:/usr/share/elasticsearch/config/certs
+      - ${ES2_DATA}:/usr/share/elasticsearch/data
     environment:
       - node.name=es02
       - cluster.name=${CLUSTER_NAME}
@@ -146,6 +148,7 @@ services:
     image: docker.elastic.co/kibana/kibana:${STACK_VERSION}
     volumes:
       - ../certs:/usr/share/kibana/config/certs
+      - ${KIBANA_DATA}:/usr/share/kibana/data
     ports:
       - ${KIBANA_PORT}:5601
     environment:
